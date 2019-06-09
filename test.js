@@ -1,4 +1,4 @@
-const db = require('./utilsdb')
+const db = require('./config/utilsdb')
 const myjson = require('./lotus.json')
 var company = 'peet'
 var collections = 'CompanyData'
