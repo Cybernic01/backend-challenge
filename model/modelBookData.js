@@ -9,8 +9,8 @@ const BookSchema = mongoose.Schema({
     Publisher: String,
     Price: String,
     Review: String,
-    Soldamout: String,
-    CurrentAmout: String,
+    Soldamout: Number,
+    CurrentAmout: Number,
 });
 
 module.exports = mongoose.model('Book', BookSchema);

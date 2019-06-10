@@ -1,15 +1,10 @@
-const Book = require('../model/model.js');
+const Book = require('../model/modelBookData.js');
+const BuyBook = require('../model/modelSellBook.js');
+const ReviewBook = require('../model/modelReviewBook');
 
-// Create and Save a new Note
 exports.create = (req, res) => {
-    // if(!req.body.content) {
-    //     return res.status(400).send({
-    //         message: "Note content can not be empty"
-    //     });
-    // }
-
-    // CNew Book
-    const note = new Book({
+    
+    const book = new Book({
         Title: req.body.Title, 
         Synopsis: req.body.Synopsis,
         ISBN10: req.body.ISBN10,
@@ -18,13 +13,55 @@ exports.create = (req, res) => {
         Publisher: req.body.Publisher,
         Price: req.body.Price,
         Review: req.body.Review,
-        Soldamout: req.body.Soldamout,
+        Soldamout: 0,
         CurrentAmout: req.body.CurrentAmout
     });
 
-    // Save Note in the database
-    note.save()
+    console.log(JSON.stringify(res.body))
+    book.save()
     .then(data => {
+        console.log(JSON.stringify(data._id))
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while creating the book."
+        });
+    });
+};
+
+exports.buybook = (req, res) => {
+    
+    const book = new BuyBook({
+        Title: req.body.Title,
+        buyAmout: req.body.buyAmout
+        
+    });
+
+    // Save Note in the database
+    book.save()
+    .then(data => {
+        
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while creating the book."
+        });
+    });
+};
+
+exports.reviewbook = (req, res) => {
+    
+    const book = new ReviewBook({
+        Title: req.body.Title,
+        Review: req.body.Review,
+        Reviewer: req.body.Reviewer
+        
+    });
+
+    // Save Note in the database
+    book.save()
+    .then(data => {
+        
         res.send(data);
     }).catch(err => {
         res.status(500).send({
@@ -41,6 +78,49 @@ exports.findAll = (req, res) => {
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving book."
+        });
+    });
+};
+
+exports.findSoldbook = (req, res) => {
+    BuyBook.find()
+    .then(books => {
+        res.send(books);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving book."
+        });
+    });
+};
+
+exports.findallReviewbook = (req, res) => {
+    ReviewBook.find()
+    .then(books => {
+        res.send(books);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving book."
+        });
+    });
+};
+
+exports.findOne = (req, res) => {
+    Book.findById(req.params.bookId)
+    .then(note => {
+        if(!note) {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.bookId
+            });            
+        }
+        res.send(note);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.bookId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving note with id " + req.params.bookId
         });
     });
 };
@@ -102,3 +182,5 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+
