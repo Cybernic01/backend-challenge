@@ -12,7 +12,6 @@
 `How to run project` <br/>
 1.install Dependency
 ~~~
-
 $ cd backend-challenge/
 $ npm install
 ~~~
@@ -20,7 +19,6 @@ $ npm install
 
 2. start mongodb
 ~~~
-$ cd node-to-IPFS/
 $ sudo service mongod start
 ~~~
 
