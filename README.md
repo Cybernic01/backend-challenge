@@ -48,7 +48,7 @@ require paramiter <br/>
 <br/> this endpoint will store bookdata in modelBookData<br/>
 `For List book by ID use http://localhost:3000/books/_bookId` <br/>
 <br/> this endpoint will list book by bookId <br/>
-`For list all book use get http://localhost:3000/getallbook` <br/>
+`For list all book use get http://localhost:3000/getallbook` <br/><br/>
 
 `For update book use put http://localhost:3000/updatebook/_bookId` <br/>
 with paramiter that you want to update <br/>
@@ -65,7 +65,7 @@ with paramiter that you want to update <br/>
         "CurrentAmout": ""
 }<br/> this endpoint will update bookdata in modelBookData<br/>
 
-`For delete book use delete http://localhost:3000/deletebook/5cfd_bookId48e5469bbc323c91f220` <br/>
+`For delete book use delete http://localhost:3000/deletebook/5cfd_bookId48e5469bbc323c91f220` <br/><br/>
 `For buy book use post http://localhost:3000/buybook` <br/>
 with paramiter <br/>
 {
@@ -73,8 +73,8 @@ with paramiter <br/>
         "buyAmout": 5
 	
 } <br/>
-this endpoint will store booktitle and buyAmout in modelSellBook 
-`For list all sold book use get http://localhost:3000/getSolebook` <br/>
+this endpoint will store booktitle and buyAmout in modelSellBook <br/>
+`For list all sold book use get http://localhost:3000/getSolebook` <br/><br/>
 `For use reviewbook book use post http://localhost:3000/reviewbook` <br/>
 with paramiter <br/>
 {
